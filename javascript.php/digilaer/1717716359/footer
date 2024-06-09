@@ -1,0 +1,12 @@
+function remove_spaces_and_newlines(str){str=str.replaceAll(" ","");return str.replaceAll("\n","")}
+function is_empty_card(elem){var html_empty_cards=['<divclass="card-body"><spanclass="notifications"id="user-notifications"></span><divrole="main"><spanid="maincontent"></span><asideid="block-region-content"class="block-region"data-blockregion="content"data-droptarget="1"></aside></div></div>','<divclass="card-body"><spanclass="notifications"id="user-notifications"></span><divrole="main"><spanid="maincontent"></span><br></div></div>'];var html=remove_spaces_and_newlines(elem.innerHTML);if(html.length>1000){return!1}
+for(var i=0;i<html_empty_cards.length;i++){if(html===html_empty_cards[i]){return!0}}
+return!1}
+var digilaer_main_card=document.getElementById("digilaer-main-card");if(digilaer_main_card&&is_empty_card(digilaer_main_card)){digilaer_main_card.remove()};
+function digilaer_collapsable_table_toggle(collapseID){var collapsableActiveClassName='digilaer-collapsable-active';var items=document.querySelectorAll('.'+collapseID);[].forEach.call(items,function(el){el.classList.toggle(collapsableActiveClassName)})};
+function digilaer_collapsable_filelist_init(){const filemanager=document.getElementById("id_files_filemanager");if(!filemanager){return}
+const p=filemanager.nextElementSibling;if(!p||p.tagName!=="P"){return}
+const list=p.nextElementSibling;if(!list||list.tagName!=="DIV"||!list.classList.contains("form-filetypes-descriptions")){return}
+if(list.id){return}
+list.classList.add("collapse");list.id="form-filetypes-descriptions";const a=document.createElement("a");a.href="#";a.setAttribute("data-toggle","collapse");a.setAttribute("data-target","#"+list.id);const aText=p.innerText.replace(":","");a.innerText=aText;p.parentNode.replaceChild(a,p)}
+digilaer_collapsable_filelist_init()
